@@ -25,7 +25,7 @@ const connection = new HubConnectionBuilder().configureLogging(LogLevel.Debug).w
     transport: HttpTransportType.WebSockets
 }).build();
 
-connection.on('messageReceived', (username: string, message: string) => {
+connection.on('receivedMessage', (username: string, message: string) => {
     messages.value.push({
         username, message
     });
@@ -37,7 +37,7 @@ connection.start().then(() => {
 
 
 const send = () => {
-    connection.send("sendMessage", username, message)
+    connection.send("sendMessage", username.value, message.value)
         .then(() => message.value = '');
 }
 
