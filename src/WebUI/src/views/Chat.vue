@@ -15,29 +15,30 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { HubConnectionBuilder } from '@microsoft/signalr';
-import { ElMessage } from 'element-plus';
+import { HubConnectionBuilder, HttpTransportType, LogLevel } from '@microsoft/signalr';
 
 const messages = ref<Array<{ username: string, message: string }>>([]);
 const message = ref('');
 const username = ref('');
-const connection = new HubConnectionBuilder().withUrl('http://localhost:5298/hub').build();
+const connection = new HubConnectionBuilder().configureLogging(LogLevel.Debug).withUrl('http://localhost:5298/hub', {
+    skipNegotiation: true,
+    transport: HttpTransportType.WebSockets
+}).build();
+
 connection.on('messageReceived', (username: string, message: string) => {
     messages.value.push({
         username, message
     });
 })
 
-connection.start().then(response=>{
+connection.start().then(() => {
     console.log('SignalR is now connected');
 }).catch((err) => console.log(err));
 
 
 const send = () => {
-    console.log(connection)
-    connection.send("newMessage", username, message)
-        .then(() => (message.value = ''));
-
+    connection.send("sendMessage", username, message)
+        .then(() => message.value = '');
 }
 
 </script>

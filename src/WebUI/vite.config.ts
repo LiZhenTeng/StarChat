@@ -10,13 +10,4 @@ export default defineConfig({
       '@': resolve(__dirname, './src')
     }
   },
-  server: {
-    proxy: {
-      '/hub': {
-        target: 'https://localhost:5298',
-        changeOrigin: true,
-        //rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
-  }
 })
