@@ -4,10 +4,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
 {
-  builder
-      .AllowAnyMethod()
-      .AllowAnyHeader()
-      .WithOrigins("http://127.0.0.1:5173/");
+    builder
+        .SetIsOriginAllowed(_ => true)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
 }));
 
 builder.Services.AddSignalR();
