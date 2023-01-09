@@ -15,15 +15,13 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { HubConnectionBuilder, HttpTransportType, LogLevel } from '@microsoft/signalr';
+import { useChatIndexStore } from '@/store/chat'
 
+const chatIndexStore = useChatIndexStore();
+const { connection } = chatIndexStore;
 const messages = ref<Array<{ username: string, message: string }>>([]);
 const message = ref('');
 const username = ref('');
-const connection = new HubConnectionBuilder().configureLogging(LogLevel.Debug).withUrl('http://localhost:5298/hub', {
-    skipNegotiation: true,
-    transport: HttpTransportType.WebSockets
-}).build();
 
 connection.on('receivedMessage', (username: string, message: string) => {
     messages.value.push({

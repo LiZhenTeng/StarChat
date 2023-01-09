@@ -30,12 +30,12 @@ namespace WebApp.Hubs
         /// <summary>
         /// 发送私有消息
         /// </summary>
-        /// <param name="user">接收人</param>
+        /// <param name="userId">接收人</param>
         /// <param name="message">消息</param>
         /// <returns></returns>
-        public async Task SendPrivateMessage(string user, string message)
+        public async Task SendPrivateMessage(string userId, string message)
         {
-            await Clients.User(user).ReceivedPrivateMessage(message);
+            await Clients.User(userId).ReceivedPrivateMessage(message);
         }
         #endregion
 
