@@ -21,7 +21,9 @@
             </template>
         </el-dropdown>
         <el-icon style="font-size: 24px;">
-            <UserFilled />
+            <el-tooltip class="box-item" effect="dark" :content="user.token.split(',')[0]" placement="bottom">
+                <UserFilled />
+            </el-tooltip>
         </el-icon>
     </el-space>
 </template>
@@ -29,11 +31,11 @@
 import { Setting, Sunny, Moon, UserFilled } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
 import { watch } from 'vue';
-import { useIndexStore } from '@/store/index'
 import { zhCn as zhCnIcon, en as enIcon } from '@/components/icons'
+import { useIndexStore } from '@/store'
 
 const indexStore = useIndexStore();
-const { theme, language } = storeToRefs(indexStore)
+const { theme, language, user } = storeToRefs(indexStore)
 const el = document.querySelector('html');
 
 

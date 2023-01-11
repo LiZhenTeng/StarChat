@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import type { DefineComponent } from 'vue';
-import { HomeFilled, Grid } from '@element-plus/icons-vue';
 
 interface State {
     theme: string;
@@ -8,6 +7,9 @@ interface State {
     menu: {
         group?: Array<Menu>;
         item?: Array<MenuItem>;
+    },
+    user: {
+        token: string
     }
 }
 
@@ -35,25 +37,26 @@ export const useIndexStore = defineStore('index', {
         language: 'zhCn',
         menu: {
             group: [{
-                index: 'chat',
+                index: 'user',
                 title: {
-                    icon: Grid,
-                    text: 'Chat'
+                    text: '联系人'
                 },
                 group: {
                     item: [
                         {
-                            index: '/chat',
-                            text: '系统消息',
+                            index: '/friends',
+                            text: '好友',
                         }
                     ]
                 }
             }],
             item: [{
-                icon: HomeFilled,
                 index: '/',
-                text: '首页',
+                text: '消息',
             }]
+        },
+        user:{
+            token:''
         }
     })
 })

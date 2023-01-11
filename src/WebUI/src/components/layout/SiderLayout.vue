@@ -29,7 +29,6 @@
     </el-scrollbar>
 </template>
 <script lang="ts" setup>
-import { markRaw,shallowRef } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useIndexStore } from '@/store/index';
 
@@ -38,6 +37,10 @@ const { menu } = storeToRefs(indexStore);
 
 </script>
 <style scoped>
+.active {
+    background-color: rgba(64, 158, 255, 0.1);
+}
+
 .group-title /deep/.el-menu-item-group__title {
     display: none;
 }

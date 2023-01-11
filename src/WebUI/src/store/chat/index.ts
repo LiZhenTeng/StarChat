@@ -11,6 +11,6 @@ export const useChatIndexStore = defineStore('chatIndex', {
         connection: new HubConnectionBuilder().configureLogging(LogLevel.Debug).withUrl('http://localhost:5298/hub', {
             skipNegotiation: true,
             transport: HttpTransportType.WebSockets
-        }).build(),
+        }).build()
     })
 })

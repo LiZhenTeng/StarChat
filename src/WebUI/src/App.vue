@@ -14,9 +14,9 @@
 						<header-layout></header-layout>
 					</el-header>
 					<el-main :style="{
-						margin: '24px 24px 24px 24px',
+						margin: '10px 10px 10px 10px',
 						borderRadius: '4px',
-						padding: '24px 32px',
+						padding: '10px 10px',
 						overflow: 'auto'
 					}">
 						<router-view></router-view>
