@@ -7,10 +7,13 @@
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
-import { useSendPrivateMessageStore } from '@/store/chat/send-private-message'
+import { useSendPrivateMessageStore } from '@/store/chat/send-private-message';
+import { useLoginVerification } from '@/views'
+
+useLoginVerification();
 
 const sendPrivateMessage = useSendPrivateMessageStore();
-const { activeKey, messages } = storeToRefs(sendPrivateMessage);
+const { activeKey, chatRecords } = storeToRefs(sendPrivateMessage);
 
 const users = reactive<Array<{ name: string, avatar?: string,  key: string }>>([{
     name: '刘磊',
@@ -25,7 +28,13 @@ const router = useRouter();
 const view = (key: string) => {
     sendPrivateMessage.$reset();
     activeKey.value = key;
-    messages.value = users;
+    chatRecords.value=[{
+        recordId:'1',
+        name:'刘磊'
+    },{
+        recordId:'2',
+        name:'刘昶'
+    }];
     router.push({
         path: '/private-message'
     })

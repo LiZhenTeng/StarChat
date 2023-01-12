@@ -8,9 +8,9 @@ interface State {
 
 export const useChatIndexStore = defineStore('chatIndex', {
     state: (): State => ({
-        connection: new HubConnectionBuilder().configureLogging(LogLevel.Debug).withUrl('http://localhost:5298/hub', {
+        connection: new HubConnectionBuilder().withUrl('http://localhost:5298/hub', {
             skipNegotiation: true,
             transport: HttpTransportType.WebSockets
-        }).build()
+        }).withAutomaticReconnect().build()
     })
 })

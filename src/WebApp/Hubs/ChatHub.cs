@@ -5,6 +5,16 @@ namespace WebApp.Hubs
     public class ChatHub : Hub<IChatHub>
     {
 
+        public override Task OnConnectedAsync()
+        {
+            Console.Write($"登陆了{Context.ConnectionId}");
+            return base.OnConnectedAsync();
+        }
+        public override Task OnDisconnectedAsync(Exception? exception)
+        {
+
+            return base.OnDisconnectedAsync(exception);
+        }
         /// <summary>
         /// 发送所有客户端
         /// </summary>

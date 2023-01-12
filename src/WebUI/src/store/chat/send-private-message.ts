@@ -2,15 +2,15 @@ import { defineStore } from 'pinia';
 
 interface State {
     activeKey: string,
-    messages: Array<{
+    chatRecords: Array<{
         name: string,
-        key: string
+        recordId: string
     }>
 }
 
 export const useSendPrivateMessageStore = defineStore('sendPrivateMessage', {
     state: (): State => ({
         activeKey: '',
-        messages: []
+        chatRecords: []
     })
 })
